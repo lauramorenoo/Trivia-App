@@ -39,6 +39,7 @@ class TriviaQuiz {
 var finalScore = 0;
 var questionNumber = 0;
 var quiz = TriviaQuiz();
+var quizID = 1234;
 
 class Quiz extends StatefulWidget {
   @override
@@ -58,9 +59,7 @@ class QuizState extends State<Quiz> {
           alignment: Alignment.topCenter,
           child: Column(
             children: <Widget>[
-
               new Padding(padding: EdgeInsets.all(20.0)),
-
               new Container(
                 alignment: Alignment.centerRight,
                 child: Row(
@@ -77,9 +76,7 @@ class QuizState extends State<Quiz> {
                   ],
                 ),
               ),
-
               new Padding(padding: EdgeInsets.all(10.0)),
-
               new Text(
                 quiz.questions[questionNumber],
                 style: TextStyle(
@@ -87,7 +84,6 @@ class QuizState extends State<Quiz> {
                 ),
               ),
               new Padding(padding: EdgeInsets.all(10.0)),
-
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -174,9 +170,7 @@ class QuizState extends State<Quiz> {
                   )
                 ],
               ),
-
               Padding(padding: EdgeInsets.all(10.0)),
-              
               Container(
                 alignment: Alignment.bottomCenter,
                 child: MaterialButton(
@@ -237,18 +231,16 @@ class Summary extends StatelessWidget {
               style: TextStyle(fontSize: 22.0),
             ),
             new Padding(padding: EdgeInsets.all(10.0)),
-            
             new MaterialButton(
-                color: Colors.red,
-                onPressed: () {
-                  questionNumber = 0;
-                  finalScore = 0;
-                  Navigator.pop(context);
-                },
+              color: Colors.red,
+              onPressed: () {
+                questionNumber = 0;
+                finalScore = 0;
+                Navigator.pop(context);
+              },
               child: Text("Start Over",
-              style: TextStyle(
-                fontSize: 20.0, color: Colors.white
-              )),)
+                  style: TextStyle(fontSize: 20.0, color: Colors.white)),
+            )
           ],
         )),
       ),
