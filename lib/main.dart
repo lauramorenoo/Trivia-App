@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import './quiz.dart';
-//import 'package:web_socket_channel/io.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -11,6 +10,10 @@ void main() {
     ),
   ));
 }
+
+/*importvoid main() {
+  runApp(MaterialApp());
+}*/
 
 class TriviaQuiz extends StatefulWidget {
   final WebSocketChannel channel;
@@ -23,8 +26,11 @@ class TriviaQuiz extends StatefulWidget {
 }
 
 class TriviaQuizState extends State<TriviaQuiz> {
-  TextEditingController editingController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _controller = TextEditingController();
   var quizID = 1234;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,15 +38,16 @@ class TriviaQuizState extends State<TriviaQuiz> {
         title: const Text("Cloud Race Trivia"),
         backgroundColor: Colors.blueGrey,
       ),
-      body: Container(
-        margin: const EdgeInsets.all(15.0),
+      body: Form(
+        //margin: const EdgeInsets.all(15.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextFormField(
-              controller: editingController,
-              decoration: InputDecoration(labelText: "Enter Game Code"),
+            Form(
+            child: TextFormField(
+              decoration: const InputDecoration(labelText: "Enter Game Code"),
+              controller: _controller,
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Enter valid Game Code';
@@ -48,6 +55,7 @@ class TriviaQuizState extends State<TriviaQuiz> {
                 quizID = value as int;
                 return null;
               },
+            ),
             ),
             StreamBuilder(
               stream: widget.channel.stream,
@@ -70,12 +78,16 @@ class TriviaQuizState extends State<TriviaQuiz> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.send),
+        onPressed: startQuiz,
+      ),
     );
   }
 
   void startQuiz() {
-    if (editingController.text.isNotEmpty) {
-      widget.channel.sink.add(editingController.text);
+    if (_controller.text.isNotEmpty) {
+      widget.channel.sink.add(_controller.text);
     }
     setState(() {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Quiz()));
