@@ -11,10 +11,6 @@ void main() {
   ));
 }
 
-/*importvoid main() {
-  runApp(MaterialApp());
-}*/
-
 class TriviaQuiz extends StatefulWidget {
   final WebSocketChannel channel;
   TriviaQuiz({required this.channel});
@@ -49,7 +45,7 @@ class TriviaQuizState extends State<TriviaQuiz> {
               decoration: const InputDecoration(labelText: "Enter Game Code"),
               controller: _controller,
               validator: (value) {
-                if (value!.isEmpty) {
+                if (value != null) {
                   return 'Enter valid Game Code';
                 }
                 quizID = value as int;

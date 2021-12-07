@@ -2,7 +2,7 @@ import 'package:game_socket/client.dart';
 
 void main() {
   var client = GameClientExample();
-  client.connect('localhost', 8080);
+  client.connect('localhost:', 8080);
 }
 
 class GameClientExample extends GameSocketClient {

@@ -63,7 +63,7 @@ class QuizState extends State<Quiz> {
               new Padding(padding: EdgeInsets.all(20.0)),
               new Container(
                 alignment: Alignment.centerRight,
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
@@ -85,7 +85,7 @@ class QuizState extends State<Quiz> {
                 ),
               ),
               new Padding(padding: EdgeInsets.all(10.0)),
-              new Row(
+              new Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   //choice 1
@@ -130,7 +130,7 @@ class QuizState extends State<Quiz> {
 
                   Padding(padding: EdgeInsets.all(10.0)),
 
-                  //choice 2
+                  //choice 3
                   new MaterialButton(
                     minWidth: 120.0,
                     color: Colors.lightBlue,
